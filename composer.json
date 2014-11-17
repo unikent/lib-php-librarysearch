@@ -16,7 +16,7 @@
    },
    "autoload": {
       "psr-4": {
-         "UKC\\LibrarySearch\\": ["src/"]
+         "unikent\\LibrarySearch\\": ["src/"]
       }
    },
    "require-dev": {

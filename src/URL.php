@@ -7,7 +7,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace UKC\LibrarySearch;
+namespace unikent\LibrarySearch;
 
 /**
  * Represents a Library Search URL.
