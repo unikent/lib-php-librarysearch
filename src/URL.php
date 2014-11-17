@@ -48,6 +48,8 @@ class URL
         }
 
         $this->_campus = $campus;
+
+        return $this;
     }
 
     /**
@@ -74,6 +76,8 @@ class URL
         }
 
         $this->add_raw_scope('primo_central_multiple_fe');
+
+        return $this;
     }
 
     /**
@@ -83,6 +87,8 @@ class URL
      */
     public function set_search_term($searchterm) {
         $this->_search_term = $searchterm;
+
+        return $this;
     }
 
     /**
@@ -103,6 +109,8 @@ class URL
         if (!in_array($scope, $this->_scopes)) {
             $this->_scopes[] = $scope;
         }
+
+        return $this;
     }
 
     /**
@@ -114,6 +122,8 @@ class URL
      */
     public function add_scope($scope) {
         $this->add_raw_scope("scope:({$scope})");
+
+        return $this;
     }
 
     /**
