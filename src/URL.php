@@ -1,8 +1,8 @@
 <?php
 /**
- * Reading Lists API for is-dev applications.
+ * LibrarySearch API.
  *
- * @package    ReadingLists
+ * @package    LibrarySearch
  * @copyright  2014 Skylar Kelty <S.Kelty@kent.ac.uk>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
