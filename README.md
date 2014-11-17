@@ -8,7 +8,6 @@ Add this to your composer require:
 
 Example Usage:
 ```
-<?php
 $url = new \unikent\LibrarySearch\URL();
 $url->set_search_term("Example");
 echo $url->get_search_url();
