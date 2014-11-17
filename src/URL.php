@@ -25,33 +25,55 @@ class URL
 
     /**
      * Constructor.
+     * 
+     * @param string $campus The name of the campus (canterbury/medway).
      */
-    public function __construct() {
-        $this->set_campus('canterbury');
+    public function __construct($campus = 'canterbury') {
         $this->set_search_term('');
+        $this->set_campus($campus);
 
-        // Set default scopes.
         $this->_scopes = array();
-        $this->add_scope('44KEN_Voyager');
-        $this->add_scope('44KEN_CALM_DS');
-        $this->add_scope('44KEN_MODES_DS');
-        $this->add_scope('44KEN_EPR_DS');
-        $this->add_scope('44MDH_MW');
-        $this->add_raw_scope('primo_central_multiple_fe');
+        $this->set_default_scopes();
     }
-
 
     /**
      * Set the campus of the URL.
+     * This must be done at class instantiation time.
      *
      * @param string $campus The name of the campus (canterbury/medway).
      */
-    public function set_campus($campus) {
+    protected function set_campus($campus) {
         if (!in_array($campus, array('canterbury', 'medway'))) {
             throw new \Exception("Invalid campus '{$campus}'.");
         }
 
         $this->_campus = $campus;
+    }
+
+    /**
+     * Sets default scopes.
+     */
+    protected function set_default_scopes() {
+        switch ($this->_campus) {
+            case 'canterbury':
+                $this->add_scope('44KEN_Voyager');
+                $this->add_scope('44KEN_CALM_DS');
+                $this->add_scope('44KEN_MODES_DS');
+                $this->add_scope('44KEN_EPR_DS');
+                $this->add_scope('44MDH_MW');
+            break;
+
+            case 'medway':
+                $this->add_scope('44MDH_MW_CLONE');
+                $this->add_scope('44KEN_SFX_DS_CLONE');
+                $this->add_scope('44KEN_CALM_DS_CLONE');
+                $this->add_scope('44KEN_SPECIAL_COLL_LMS_CLONE');
+                $this->add_scope('44KEN_Voyager_CLONE');
+                $this->add_scope('44KEN_EPR_DS_CLONE');
+            break;
+        }
+
+        $this->add_raw_scope('primo_central_multiple_fe');
     }
 
     /**
@@ -107,7 +129,7 @@ class URL
             'indx' => 1,
             'dum' => true,
             'srt' => 'rank',
-            'vid' => '44KEN_VU1',
+            'vid' => $this->_campus == 'medway' ? '44MDH_VU1' : '44KEN_VU1',
             'frbg' => '',
             'vl%28freeText0%29' => urlencode($this->_search_term),
             'scp.scps' => urlencode(implode(',', $this->_scopes))
