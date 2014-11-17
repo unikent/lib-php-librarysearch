@@ -12,3 +12,4 @@ $url = new \unikent\LibrarySearch\URL();
 $url->set_search_term("Example");
 echo $url->get_search_url();
 ```
+
