@@ -14,11 +14,14 @@ namespace unikent\LibrarySearch;
  */
 class URL
 {
-    /** Search term */
+    /** Search term. */
     private $_search_term;
 
-    /** Campus */
+    /** Campus. */
     private $_campus;
+
+    /** Scopes  */
+    private $_scopes;
 
     /**
      * Constructor.
@@ -26,7 +29,17 @@ class URL
     public function __construct() {
         $this->set_campus('canterbury');
         $this->set_search_term('');
+
+        // Set default scopes.
+        $this->_scopes = array();
+        $this->add_scope('44KEN_Voyager');
+        $this->add_scope('44KEN_CALM_DS');
+        $this->add_scope('44KEN_MODES_DS');
+        $this->add_scope('44KEN_EPR_DS');
+        $this->add_scope('44MDH_MW');
+        $this->add_raw_scope('primo_central_multiple_fe');
     }
+
 
     /**
      * Set the campus of the URL.
@@ -60,6 +73,28 @@ class URL
     }
 
     /**
+     * Add a raw scope.
+     *
+     * @param string $scope A valid library search scope.
+     */
+    public function add_raw_scope($scope) {
+        if (!in_array($scope, $this->_scopes)) {
+            $this->_scopes[] = $scope;
+        }
+    }
+
+    /**
+     * Add a standard scope.
+     *
+     * @param string $scope A valid library search scope.
+     * 
+     * @see add_raw_scope()
+     */
+    public function add_scope($scope) {
+        $this->add_raw_scope("scope:({$scope})");
+    }
+
+    /**
      * Returns the URL params.
      */
     public function get_url_params() {
@@ -74,7 +109,8 @@ class URL
             'srt' => 'rank',
             'vid' => '44KEN_VU1',
             'frbg' => '',
-            'vl%28freeText0%29' => urlencode($this->_search_term)
+            'vl%28freeText0%29' => urlencode($this->_search_term),
+            'scp.scps' => urlencode(implode(',', $this->_scopes))
         );
     }
 
