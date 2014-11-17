@@ -123,7 +123,7 @@ class URL
         $params = $this->get_url_params();
         $params = array_map(function($param, $value) {
             return "{$param}={$value}";
-        }, $params);
+        }, array_keys($params), array_values($params));
         $params = implode('&', $params);
 
         return "{$baseurl}?{$params}";
