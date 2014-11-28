@@ -3,6 +3,8 @@ Library Search Simple PHP API
 
 [![Latest Stable Version](https://poser.pugx.org/unikent/lib-php-librarysearch/v/stable.png)](https://packagist.org/packages/unikent/lib-php-librarysearch)
 
+Full API docs available here: http://unikent.github.io/lib-php-librarysearch/
+
 Add this to your composer require:
  * "unikent/lib-php-librarysearch": "dev-master"
 
