@@ -2,7 +2,6 @@
 /**
  * LibrarySearch API.
  *
- * @package    LibrarySearch
  * @copyright  2014 Skylar Kelty <S.Kelty@kent.ac.uk>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -11,16 +10,33 @@ namespace unikent\LibrarySearch;
 
 /**
  * Represents a Library Search URL.
+ * 
+ * @example ../examples/example-1/run.php Simple URL Example.
  */
 class URL
 {
-    /** Search term. */
+    /**
+     * Search term.
+     *
+     * @internal
+     * @var string
+     */
     private $_search_term;
 
-    /** Campus. */
+    /**
+     * Campus.
+     *
+     * @internal
+     * @var string
+     */
     private $_campus;
 
-    /** Scopes  */
+    /**
+     * Scopes.
+     *
+     * @internal
+     * @var array
+     */
     private $_scopes;
 
     /**
@@ -40,6 +56,7 @@ class URL
      * Set the campus of the URL.
      * This must be done at class instantiation time.
      *
+     * @internal
      * @param string $campus The name of the campus (canterbury/medway).
      */
     protected function set_campus($campus) {
@@ -54,6 +71,8 @@ class URL
 
     /**
      * Sets default scopes.
+     *
+     * @internal
      */
     protected function set_default_scopes() {
         switch ($this->_campus) {
