@@ -184,6 +184,6 @@ class URL
      * To String!
      */
     public function __toString() {
-        return $this->get_url();
+        return $this->get_search_url();
     }
 }
