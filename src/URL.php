@@ -116,7 +116,7 @@ class URL
      * @see get_url()
      */
     public function get_base_url() {
-        return 'http://pmt-eu.hosted.exlibrisgroup.com//primo_library/libweb/action/search.do';
+        return 'http://pmt-eu.hosted.exlibrisgroup.com/primo_library/libweb/action/search.do';
     }
 
     /**
