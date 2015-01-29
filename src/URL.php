@@ -78,6 +78,7 @@ class URL
         switch ($this->_campus) {
             case 'canterbury':
                 $this->add_scope('44KEN_Voyager');
+                $this->add_scope('44KEN_SFX_DS');
                 $this->add_scope('44KEN_CALM_DS');
                 $this->add_scope('44KEN_MODES_DS');
                 $this->add_scope('44KEN_EPR_DS');
