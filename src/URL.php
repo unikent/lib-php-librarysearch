@@ -117,7 +117,7 @@ class URL
      * @see get_url()
      */
     public function get_base_url() {
-        return 'http://primo-direct-eu-sb.hosted.exlibrisgroup.com/primo_library/libweb/action/search.do';
+        return 'http://pmt-eu.hosted.exlibrisgroup.com/primo_library/libweb/action/search.do';
     }
 
     /**
@@ -185,6 +185,6 @@ class URL
      * To String!
      */
     public function __toString() {
-        return $this->get_url();
+        return $this->get_search_url();
     }
 }
