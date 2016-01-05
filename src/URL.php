@@ -135,11 +135,15 @@ class URL
      * @param string $campus_code The code of the campus (canterbury/medway/europe).
      */
     protected function get_campus_code($campus) {
-
         switch ($campus) {
-            case  'medway': return '44MDH_VU1'; 
-            case  'europe': return '44KEN_VUEU';
-            default: return '44KEN_VU1'; // canterbury
+            case  'medway':
+            return '44MDH_VU1';
+
+            case  'europe':
+            return '44KEN_VUEU';
+
+            default:
+            return '44KEN_VU1'; // canterbury
         }
     }
 
