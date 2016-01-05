@@ -60,7 +60,7 @@ class URL
      * @param string $campus The name of the campus (canterbury/medway).
      */
     protected function set_campus($campus) {
-        if (!in_array($campus, array('canterbury', 'medway'))) {
+        if (!in_array($campus, array('canterbury', 'medway', 'europe'))) {
             throw new \Exception("Invalid campus '{$campus}'.");
         }
 
@@ -93,6 +93,14 @@ class URL
                 $this->add_scope('44KEN_Voyager_CLONE');
                 $this->add_scope('44KEN_EPR_DS_CLONE');
             break;
+
+            case 'europe':
+                $this->add_scope('44KEN_SFX_DS');
+                $this->add_scope('44KEN_CALM_DS');
+                $this->add_scope('44KEN_MODES_DS');
+                $this->add_scope('44KEN_EPR_DS');
+                $this->add_scope('44KEN_PARIS');
+            break;
         }
 
         $this->add_raw_scope('primo_central_multiple_fe');
@@ -119,6 +127,22 @@ class URL
     public function get_base_url() {
         return 'http://pmt-eu.hosted.exlibrisgroup.com/primo_library/libweb/action/search.do';
     }
+
+    /**
+     * Get the campus code for the URL.
+     *
+     * @internal
+     * @param string $campus_code The code of the campus (canterbury/medway/europe).
+     */
+    protected function get_campus_code($campus) {
+
+        switch ($campus) {
+            case  'medway': return '44MDH_VU1'; 
+            case  'europe': return '44KEN_VUEU';
+            default: return '44KEN_VU1'; // canterbury
+        }
+    }
+
 
     /**
      * Add a raw scope.
@@ -159,7 +183,7 @@ class URL
             'indx' => 1,
             'dum' => true,
             'srt' => 'rank',
-            'vid' => $this->_campus == 'medway' ? '44MDH_VU1' : '44KEN_VU1',
+            'vid' => $this->get_campus_code($this->_campus),
             'frbg' => '',
             'vl%28freeText0%29' => urlencode($this->_search_term),
             'scp.scps' => urlencode(implode(',', $this->_scopes))
