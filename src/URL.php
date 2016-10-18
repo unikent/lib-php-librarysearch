@@ -2,7 +2,7 @@
 /**
  * LibrarySearch API.
  *
- * @copyright  2014 Skylar Kelty <S.Kelty@kent.ac.uk>
+ * @copyright  2016 Skylar Kelty <S.Kelty@kent.ac.uk>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -125,7 +125,7 @@ class URL
      * @see get_url()
      */
     public function get_base_url() {
-        return 'http://pmt-eu.hosted.exlibrisgroup.com/primo_library/libweb/action/search.do';
+        return 'http://librarysearch.kent.ac.uk/primo_library/libweb/action/search.do';
     }
 
     /**
