@@ -15,6 +15,8 @@ namespace unikent\LibrarySearch;
  */
 class Utils
 {
+    private static $_cache = [];
+
     /**
      * Map an old library search URL to a new one (as best we can).
      */
@@ -31,12 +33,14 @@ class Utils
         if (!isset($parts['query'])) {
             $path = explode(':', $parts['path']);
             // Ignore the scope, we can't map that.
-            $oldid = self::extract_voyager_id($path[2]);
-            if (count($path) == 3 && !empty($oldid)) {
-                // We can map this now.
-                $newid = urlencode(self::map_voyager_id($oldid));
-                if ($newid) {
-                    return "https://ulms.ent.sirsidynix.net.uk/client/en_GB/kent/search/detailnonmodal/ent:$002f$002fSD_ILS$002f0$002fSD_ILS:{$newid}/one";
+            foreach ($path as $pathpart) {
+                $oldid = self::extract_voyager_id($pathpart);
+                if (!empty($oldid)) {
+                    // We can map this now.
+                    $newid = urlencode(self::map_voyager_id($oldid));
+                    if ($newid) {
+                        return "https://ulms.ent.sirsidynix.net.uk/client/en_GB/kent/search/detailnonmodal/ent:$002f$002fSD_ILS$002f0$002fSD_ILS:{$newid}/one";
+                    }
                 }
             }
 
@@ -82,16 +86,21 @@ class Utils
      * Map a Voyager ID to a new ID.
      */
     public static function map_voyager_id($oldid) {
-        $oldid = 'KU' . $oldid;
-        if (($handle = fopen(__DIR__ . "/map.csv", "r")) !== false) {
-            while (($data = fgetcsv($handle, 1000, ",")) !== false) {
-                if (count($data) >= 2 && $data[0] == $oldid) {
-                    return $data[1];
+        if (empty(self::$_cache)) {
+            self::$_cache = [];
+            if (($handle = fopen(__DIR__ . "/map.csv", "r")) !== false) {
+                while (($data = fgetcsv($handle, 1000, ",")) !== false) {
+                    self::$_cache[$data[0]] = $data[1];
                 }
+                fclose($handle);
             }
-            fclose($handle);
         }
 
-        return null;
+        if (!isset(self::$_cache['KU' . $oldid])) {
+            echo "No mapping available for $oldid\n";
+            return null;
+        }
+
+        return self::$_cache['KU' . $oldid];
     }
 }
