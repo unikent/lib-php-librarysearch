@@ -10,7 +10,7 @@ namespace unikent\LibrarySearch;
 
 /**
  * Represents a Library Search URL.
- * 
+ *
  * @example ../examples/example-1/run.php Simple URL Example.
  */
 class URL
@@ -41,7 +41,7 @@ class URL
 
     /**
      * Constructor.
-     * 
+     *
      * @param string $campus The name of the campus (canterbury/medway).
      */
     public function __construct($campus = 'canterbury') {
@@ -121,7 +121,7 @@ class URL
 
     /**
      * Returns the base URL.
-     * 
+     *
      * @see get_url()
      */
     public function get_base_url() {
@@ -142,8 +142,9 @@ class URL
             case  'europe':
             return '44KEN_VUEU';
 
+            case  'canterbury':
             default:
-            return '44KEN_VU1'; // canterbury
+            return '44KEN_VU1';
         }
     }
 
@@ -165,7 +166,7 @@ class URL
      * Add a standard scope.
      *
      * @param string $scope A valid library search scope.
-     * 
+     *
      * @see add_raw_scope()
      */
     public function add_scope($scope) {
