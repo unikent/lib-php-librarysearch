@@ -73,7 +73,7 @@ class Utils
     /**
      * Check this is a voyager ID.
      */
-    private function extract_voyager_id($id) {
+    private static function extract_voyager_id($id) {
         $pos = strpos($id, '44KEN_Voyager');
         if ($pos !== 0) {
             return null;

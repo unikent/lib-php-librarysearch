@@ -15,6 +15,8 @@ $lines = explode("\n", file_get_contents(__DIR__ . "/old.txt"));
 foreach ($lines as $line) {
     $mapped = \unikent\LibrarySearch\Utils::map_url($line);
     if (!$mapped) {
-        echo "Could not map {$line}\n";
+        //echo "Could not map {$line}\n";
+    } else {
+        echo "Mapped {$line} to {$mapped}\n";
     }
 }
