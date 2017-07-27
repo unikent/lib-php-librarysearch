@@ -25,7 +25,7 @@ class Utils
 
         // Special case.
         if ($old == 'http://pmt-eu.hosted.exlibrisgroup.com/primo_library/libweb/uploaded_files/44KEN_VU1/KENLogo.png') {
-            return 'http://librarysearch.kent.ac.uk';
+            return 'https://librarysearch.kent.ac.uk';
         }
 
         // The most old URLs take this form: http://pmt-eu.hosted.exlibrisgroup.com/COLLECTION:SCOPE:ID.
@@ -39,7 +39,7 @@ class Utils
                     // We can map this now.
                     $newid = urlencode(self::map_voyager_id($oldid));
                     if ($newid) {
-                        return "https://ulms.ent.sirsidynix.net.uk/client/en_GB/kent/search/detailnonmodal/ent:$002f$002fSD_ILS$002f0$002fSD_ILS:{$newid}/one";
+                        return "https://librarysearch.kent.ac.uk/client/en_GB/kent/search/detailnonmodal/ent:$002f$002fSD_ILS$002f0$002fSD_ILS:{$newid}/one";
                     }
                 }
             }
@@ -57,14 +57,14 @@ class Utils
             $oldid = self::extract_voyager_id($oldparams['docId']);
             $newid = urlencode(self::map_voyager_id($oldid));
             if ($newid) {
-                return "https://ulms.ent.sirsidynix.net.uk/client/en_GB/kent/search/detailnonmodal/ent:$002f$002fSD_ILS$002f0$002fSD_ILS:{$newid}/one";
+                return "https://librarysearch.kent.ac.uk/client/en_GB/kent/search/detailnonmodal/ent:$002f$002fSD_ILS$002f0$002fSD_ILS:{$newid}/one";
             }
         }
 
         // Now we very loosely handle searches.
         if (!empty($oldparams['vl(freeText0)']) && isset($oldparams['fn']) && $oldparams['fn'] == 'search') {
             $text = urlencode(urldecode($oldparams['vl(freeText0)']));
-            return "https://ulms.ent.sirsidynix.net.uk/client/en_GB/kent/search/results?qu={$text}";
+            return "https://librarysearch.kent.ac.uk/client/en_GB/kent/search/results?qu={$text}";
         }
 
         return null;

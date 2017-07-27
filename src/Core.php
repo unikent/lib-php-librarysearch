@@ -21,7 +21,7 @@ class Core
      * @see get_url()
      */
     public static function get_base_url() {
-        return 'https://ulms.ent.sirsidynix.net.uk/client/en_GB/kent';
+        return 'https://librarysearch.kent.ac.uk/client/en_GB/kent';
     }
 
     /**
